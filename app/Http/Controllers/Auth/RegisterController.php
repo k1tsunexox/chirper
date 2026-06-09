@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -24,6 +25,7 @@ class RegisterController extends Controller
         ]);
 
         Auth::login($user);
+
         return redirect('/')->with('success', 'Welcome to Chirper!');
     }
 }
