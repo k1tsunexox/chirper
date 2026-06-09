@@ -15,20 +15,17 @@ class ChirpController extends Controller
         return view('home', compact('chirps'));
     }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'message' => 'required|string|min:5|max:255',
-        ]);
+// ChirpController@store — remove the if/else entirely
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'message' => 'required|string|min:5|max:255',
+    ]);
 
-        if (auth()->check()) {
-            auth()->user()->chirps()->create($validated);
-        } else {
-            Chirp::create(['message' => $validated['message']]);
-        }
+    $request->user()->chirps()->create($validated);
 
-        return redirect()->back()->with('success', 'Your chirp has been posted!');
-    }
+    return redirect()->back()->with('success', 'Your chirp has been posted!');
+}
 
     public function edit(Chirp $chirp)
     {

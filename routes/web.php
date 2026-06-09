@@ -26,7 +26,7 @@ Route::post('/login', LoginController::class)->middleware('guest');
 
 Route::post('/logout', LogoutController::class)->middleware('auth');
 
-Route::post('/chirps', [ChirpController::class, 'store']);
+Route::post('/chirps', [ChirpController::class, 'store'])->middleware('auth');
 Route::get('/chirps/{chirp}/edit', [ChirpController::class, 'edit'])->middleware('auth');
 Route::put('/chirps/{chirp}', [ChirpController::class, 'update'])->middleware('auth');
 Route::delete('/chirps/{chirp}', [ChirpController::class, 'destroy'])->middleware('auth');

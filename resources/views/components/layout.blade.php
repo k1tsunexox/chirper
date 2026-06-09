@@ -26,13 +26,24 @@
             @endauth
         </div>
     </nav>
-    
+
     @if(session('success'))
         <div class="toast toast-top toast-center z-50">
             <div class="alert alert-success">
                 <span>{{ session('success') }}</span>
             </div>
         </div>
+    @endif
+    @if(session('success'))
+    <div class="toast toast-top toast-center z-50" id="toast-msg">
+        <div class="alert alert-success">
+            <span>{{ session('success') }}</span>
+        </div>
+    </div>
+    <script>
+
+        setTimeout(() => document.getElementById('toast-msg').remove(), 3000);
+    </script>
     @endif
 
     <main class="max-w-2xl mx-auto p-4">
