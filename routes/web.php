@@ -1,11 +1,11 @@
 <?php
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ChirpController;
-use App\Http\Controllers\Auth\RegisterController;
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ChirpController;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ChirpController::class, 'index'])->name('home');
 
@@ -16,7 +16,6 @@ Route::get('/user', function (Request $request) {
 Route::get('/test', function () {
     return response()->json(['message' => 'API is working!']);
 });
-
 
 Route::view('/register', 'auth.register')->middleware('guest');
 Route::post('/register', RegisterController::class)->middleware('guest');

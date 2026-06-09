@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Chirp;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 
 class ChirpController extends Controller
 {
@@ -12,24 +13,26 @@ class ChirpController extends Controller
     public function index()
     {
         $chirps = Chirp::with('user')->latest()->get();
+
         return view('home', compact('chirps'));
     }
 
-// ChirpController@store — remove the if/else entirely
-public function store(Request $request)
-{
-    $validated = $request->validate([
-        'message' => 'required|string|min:5|max:255',
-    ]);
+    // ChirpController@store — remove the if/else entirely
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'message' => 'required|string|min:5|max:255',
+        ]);
 
-    $request->user()->chirps()->create($validated);
+        $request->user()->chirps()->create($validated);
 
-    return redirect()->back()->with('success', 'Your chirp has been posted!');
-}
+        return redirect()->back()->with('success', 'Your chirp has been posted!');
+    }
 
     public function edit(Chirp $chirp)
     {
         $this->authorize('update', $chirp);
+
         return view('chirps.edit', compact('chirp'));
     }
 
