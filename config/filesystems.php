@@ -1,3 +1,4 @@
+composer update
 <?php
 
 return [
